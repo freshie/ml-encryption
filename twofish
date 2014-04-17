@@ -1157,7 +1157,7 @@ declare private function local:F32($k64Cnt as xs:unsignedInt, $x as xs:unsignedI
         case 0 return $case_0($b0, $b1, $b2, $b3)
         case 3 return $case_3($b0, $b1, $b2, $b3)
         case 2 return $case_2($b0, $b1, $b2, $b3)
-        default return fn:error("You Suck!")
+        default return fn:error("TwoFish:OutOfCase")
 };
 
 declare private function local:Fe32($sBox as xs:unsignedInt*, $x as xs:unsignedInt, $R as xs:unsignedInt) as xs:unsignedInt {
