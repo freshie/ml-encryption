@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-(: module namespace tf = "encryption/two-fish"; :)
+(: module namespace tf = "http://lds.org/code/shared/comomn/encryption/two-fish"; :)
 import module namespace functx = "http://www.functx.com" at "/MarkLogic/functx/functx-1.0-nodoc-2007-01.xqy";
 
 declare variable $DEBUG as xs:boolean := fn:false();
@@ -160,42 +160,42 @@ declare private variable $pMap :=
        85,    9,  190,  145)
   return 
   map:new((
-    map:entry("p1",$p1),
-    map:entry("p0",$p0)
+    map:entry("1",$p1),
+    map:entry("0",$p0)
   ));
 
-declare private function local:P($i as xs:unsignedInt, $j as xs:unsignedInt) as xs:unsignedInt {
+declare private function local:P($i as xs:string, $j as xs:unsignedInt) as xs:unsignedInt {
     let $index := $j + 1
-    return map:get($pMap, "p" || $i)[$index]
+    return map:get($pMap, $i)[$index]
 };
 (:
  : Define the fixed p0/p1 permutations used in keyed S-box lookup.
  : By changing the following constant definitions, the S-boxes will
  : automatically get changed in the Twofish engine.
  :)
-declare private variable $P_00 as xs:unsignedInt := 1;
-declare private variable $P_01 as xs:unsignedInt := 0;
-declare private variable $P_02 as xs:unsignedInt := 0;
-declare private variable $P_03 as xs:unsignedInt := 1; (:xdmp:xor64($P_01, 1); :)
-declare private variable $P_04 as xs:unsignedInt := 1;
+declare private variable $P_00 as xs:string := "1";
+declare private variable $P_01 as xs:string := "0";
+declare private variable $P_02 as xs:string := "0";
+declare private variable $P_03 as xs:string := "1"; (:xdmp:xor64($P_01, 1); :)
+declare private variable $P_04 as xs:string := "1";
 
-declare private variable $P_10 as xs:unsignedInt := 0;
-declare private variable $P_11 as xs:unsignedInt := 0;
-declare private variable $P_12 as xs:unsignedInt := 1;
-declare private variable $P_13 as xs:unsignedInt := 1; (:xdmp:xor64($P_11, 1); :)
-declare private variable $P_14 as xs:unsignedInt := 0;
+declare private variable $P_10 as xs:string := "0";
+declare private variable $P_11 as xs:string := "0";
+declare private variable $P_12 as xs:string := "1";
+declare private variable $P_13 as xs:string := "1"; (:xdmp:xor64($P_11, 1); :)
+declare private variable $P_14 as xs:string := "0";
 
-declare private variable $P_20 as xs:unsignedInt := 1;
-declare private variable $P_21 as xs:unsignedInt := 1;
-declare private variable $P_22 as xs:unsignedInt := 0;
-declare private variable $P_23 as xs:unsignedInt := 1; (:xdmp:xor64($P_21, 1); :)
-declare private variable $P_24 as xs:unsignedInt := 0;
+declare private variable $P_20 as xs:string := "1";
+declare private variable $P_21 as xs:string := "1";
+declare private variable $P_22 as xs:string := "0";
+declare private variable $P_23 as xs:string := "1"; (:xdmp:xor64($P_21, 1); :)
+declare private variable $P_24 as xs:string := "0";
 
-declare private variable $P_30 as xs:unsignedInt := 0;
-declare private variable $P_31 as xs:unsignedInt := 1;
-declare private variable $P_32 as xs:unsignedInt := 1;
-declare private variable $P_33 as xs:unsignedInt := 1; (:xdmp:xor64($P_31, 1); :)
-declare private variable $P_34 as xs:unsignedInt := 1;
+declare private variable $P_30 as xs:string := "0";
+declare private variable $P_31 as xs:string := "1";
+declare private variable $P_32 as xs:string := "1";
+declare private variable $P_33 as xs:string := "1"; (:xdmp:xor64($P_31, 1); :)
+declare private variable $P_34 as xs:string := "1";
 
 (: Primitive polynomial for GF(256) :)
 declare private variable $GF256_FDBK as xs:unsignedInt := 361;
