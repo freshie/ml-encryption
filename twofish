@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-(: module namespace tf = "http://lds.org/code/shared/comomn/encryption/two-fish"; :)
+(: module namespace tf = "encryption/two-fish"; :)
 import module namespace functx = "http://www.functx.com" at "/MarkLogic/functx/functx-1.0-nodoc-2007-01.xqy";
 
 declare variable $DEBUG as xs:boolean := fn:false();
